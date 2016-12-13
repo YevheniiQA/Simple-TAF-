@@ -14,6 +14,6 @@ public class SecondNumberInput {
     }
 
     public WebElement getSecondNumberInput() {
-       return driver.findElement(SECOND_INPUT_NUMBER);
+        return driver.findElement(SECOND_INPUT_NUMBER);
     }
 }

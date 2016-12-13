@@ -13,7 +13,7 @@ public class CalculatorOperator {
         this.driver = driver;
     }
 
-    public Select getCalculatorOperatorSelect () {
+    public Select getCalculatorOperatorSelect() {
         return new Select(driver.findElement(CALCULATOR_OPERATOR_SELECT));
     }
 

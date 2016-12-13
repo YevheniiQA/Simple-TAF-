@@ -1,7 +1,7 @@
 package pageobject.pages;
 
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageobject.components.CalculateResutButton;
+import pageobject.components.CalculateResultButton;
 import pageobject.components.CalculatorOperator;
 import pageobject.components.FirstNumberInput;
 import pageobject.components.ResultLabel;
@@ -14,7 +14,7 @@ import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
 public class MainPage extends LoadableComponent<MainPage> {
 
-    private CalculateResutButton calculateResutButton;
+    private CalculateResultButton calculateResutButton;
     private CalculatorOperator calculatorOperator;
     private FirstNumberInput firstNumberInput;
     private SecondNumberInput secondNumberInput;
@@ -24,7 +24,7 @@ public class MainPage extends LoadableComponent<MainPage> {
 
     public MainPage(final WebDriver driver) {
         this.driver = driver;
-        this.calculateResutButton = new CalculateResutButton(driver);
+        this.calculateResutButton = new CalculateResultButton(driver);
         this.calculatorOperator = new CalculatorOperator(driver);
         this.firstNumberInput = new FirstNumberInput(driver);
         this.secondNumberInput = new SecondNumberInput(driver);
@@ -52,7 +52,7 @@ public class MainPage extends LoadableComponent<MainPage> {
     }
 
     public MainPage insertFirstNumber(final String value){
-        firstNumberInput.getFirstInpunNumber().sendKeys(value);
+        firstNumberInput.getFirstInputNumber().sendKeys(value);
         return this;
     }
 
