@@ -1,9 +1,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Suite1" verbose="1" >
+<suite name="Suite1" verbose="2" >
     <test name="positive" >
         <classes>
             <class name="testclasses.PositiveTests"/>
+        </classes>
+    </test>
+
+    <test name="negative" verbose="2" >
+        <classes>
+            <class name="testclasses.NegativeTests"/>
         </classes>
     </test>
 </suite>
