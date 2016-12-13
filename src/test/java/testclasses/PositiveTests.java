@@ -2,6 +2,7 @@ package testclasses;
 
 import java.util.concurrent.TimeUnit;
 
+import common.ErrorMessages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
@@ -17,7 +18,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.core.Is.is;
 
-public class PositiveTests {
+public class PositiveTests implements ErrorMessages {
 
     private WebDriver driver;
     private MainPage mainPage;
@@ -45,8 +46,9 @@ public class PositiveTests {
         final String expectedValue = "4";
         mainPage.insertFirstNumber("2").insertSecontNumber("2")
                 .selectCalculationOperator(CalculatorOperator.CalculatorOperatorType.PLUS).clickCalculateResultButton();
-        assertThat(mainPage.getCalculationResult(), is(equalTo(expectedValue)));
-        assertThat(mainPage.getTableRowWidget().getResultByIndex(1).getText(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getCalculationResult(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getTableRowWidget().getResultByIndex(1).getText(),
+                is(equalTo(expectedValue)));
     }
 
     @Test(description = "Test subtraction operation")
@@ -55,8 +57,9 @@ public class PositiveTests {
         mainPage.insertFirstNumber("4").insertSecontNumber("2")
                 .selectCalculationOperator(CalculatorOperator.CalculatorOperatorType.MINUS)
                 .clickCalculateResultButton();
-        assertThat(mainPage.getCalculationResult(), is(equalTo(expectedValue)));
-        assertThat(mainPage.getTableRowWidget().getResultByIndex(1).getText(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getCalculationResult(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getTableRowWidget().getResultByIndex(1).getText(),
+                is(equalTo(expectedValue)));
     }
 
     @Test(description = "Test multiplication operation")
@@ -65,8 +68,9 @@ public class PositiveTests {
         mainPage.insertFirstNumber("4").insertSecontNumber("2")
                 .selectCalculationOperator(CalculatorOperator.CalculatorOperatorType.MULTIPLY)
                 .clickCalculateResultButton();
-        assertThat(mainPage.getCalculationResult(), is(equalTo(expectedValue)));
-        assertThat(mainPage.getTableRowWidget().getResultByIndex(1).getText(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getCalculationResult(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getTableRowWidget().getResultByIndex(1).getText(),
+                is(equalTo(expectedValue)));
     }
 
     @Test(description = "Test divide operation")
@@ -75,48 +79,50 @@ public class PositiveTests {
         mainPage.insertFirstNumber("16").insertSecontNumber("4")
                 .selectCalculationOperator(CalculatorOperator.CalculatorOperatorType.DIVIDE)
                 .clickCalculateResultButton();
-        assertThat(mainPage.getCalculationResult(), is(equalTo(expectedValue)));
-        assertThat(mainPage.getTableRowWidget().getResultByIndex(1).getText(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getCalculationResult(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getTableRowWidget().getResultByIndex(1).getText(),
+                is(equalTo(expectedValue)));
     }
 
     @Test(description = "Test mod operation")
     public void testCalculatorModOperation() {
         final String expectedValue = "0";
         mainPage.insertFirstNumber("4").insertSecontNumber("2")
-                .selectCalculationOperator(CalculatorOperator.CalculatorOperatorType.MOD)
-                .clickCalculateResultButton();
-        assertThat(mainPage.getCalculationResult(), is(equalTo(expectedValue)));
-        assertThat(mainPage.getTableRowWidget().getResultByIndex(1).getText(), is(equalTo(expectedValue)));
+                .selectCalculationOperator(CalculatorOperator.CalculatorOperatorType.MOD).clickCalculateResultButton();
+        assertThat(forWrong(expectedValue), mainPage.getCalculationResult(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getTableRowWidget().getResultByIndex(1).getText(),
+                is(equalTo(expectedValue)));
     }
 
     @Test(description = "Test adding of positive and negative value")
     public void testAddingOfPositiveAndNegativeValues() {
         final String expectedValue = "5";
         mainPage.insertFirstNumber("10").insertSecontNumber("-5")
-                .selectCalculationOperator(CalculatorOperator.CalculatorOperatorType.PLUS)
-                .clickCalculateResultButton();
-        assertThat(mainPage.getCalculationResult(), is(equalTo(expectedValue)));
-        assertThat(mainPage.getTableRowWidget().getResultByIndex(1).getText(), is(equalTo(expectedValue)));
+                .selectCalculationOperator(CalculatorOperator.CalculatorOperatorType.PLUS).clickCalculateResultButton();
+        assertThat(forWrong(expectedValue), mainPage.getCalculationResult(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getTableRowWidget().getResultByIndex(1).getText(),
+                is(equalTo(expectedValue)));
     }
 
     @Test(description = "Test adding of negative values")
     public void testAddingOfNegativeValues() {
         final String expectedValue = "-10";
         mainPage.insertFirstNumber("-5").insertSecontNumber("-5")
-                .selectCalculationOperator(CalculatorOperator.CalculatorOperatorType.PLUS)
-                .clickCalculateResultButton();
-        assertThat(mainPage.getCalculationResult(), is(equalTo(expectedValue)));
-        assertThat(mainPage.getTableRowWidget().getResultByIndex(1).getText(), is(equalTo(expectedValue)));
+                .selectCalculationOperator(CalculatorOperator.CalculatorOperatorType.PLUS).clickCalculateResultButton();
+        assertThat(forWrong(expectedValue), mainPage.getCalculationResult(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getTableRowWidget().getResultByIndex(1).getText(),
+                is(equalTo(expectedValue)));
     }
 
     @Test(description = "Test subtraction of negative values")
-    public void testSubtractionOfNegativeValues(){
+    public void testSubtractionOfNegativeValues() {
         final String expectedValue = "0";
         mainPage.insertFirstNumber("-5").insertSecontNumber("-5")
                 .selectCalculationOperator(CalculatorOperator.CalculatorOperatorType.MINUS)
                 .clickCalculateResultButton();
-        assertThat(mainPage.getCalculationResult(), is(equalTo(expectedValue)));
-        assertThat(mainPage.getTableRowWidget().getResultByIndex(1).getText(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getCalculationResult(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getTableRowWidget().getResultByIndex(1).getText(),
+                is(equalTo(expectedValue)));
     }
 
     @Test(description = "Test adding of real numbers")
@@ -125,8 +131,9 @@ public class PositiveTests {
         mainPage.insertFirstNumber("1.2").insertSecontNumber("1.1")
                 .selectCalculationOperator(CalculatorOperator.CalculatorOperatorType.MINUS)
                 .clickCalculateResultButton();
-        assertThat(mainPage.getCalculationResult(), is(equalTo(expectedValue)));
-        assertThat(mainPage.getTableRowWidget().getResultByIndex(1).getText(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getCalculationResult(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getTableRowWidget().getResultByIndex(1).getText(),
+                is(equalTo(expectedValue)));
     }
 
 }

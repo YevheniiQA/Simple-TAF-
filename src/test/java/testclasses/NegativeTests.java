@@ -2,6 +2,7 @@ package testclasses;
 
 import java.util.concurrent.TimeUnit;
 
+import common.ErrorMessages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
@@ -17,7 +18,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.core.Is.is;
 
-public class NegativeTests {
+public class NegativeTests implements ErrorMessages {
 
     private WebDriver driver;
     private MainPage mainPage;
@@ -45,8 +46,9 @@ public class NegativeTests {
         final String expectedValue = "NaN";
         mainPage.insertFirstNumber("a").insertSecontNumber("b")
                 .selectCalculationOperator(CalculatorOperator.CalculatorOperatorType.PLUS).clickCalculateResultButton();
-        assertThat(mainPage.getCalculationResult(), is(equalTo(expectedValue)));
-        assertThat(mainPage.getTableRowWidget().getResultByIndex(1).getText(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getCalculationResult(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getTableRowWidget().getResultByIndex(1).getText(),
+                is(equalTo(expectedValue)));
     }
 
     @Test(description = "Test multiplication of empty values")
@@ -54,8 +56,9 @@ public class NegativeTests {
         final String expectedValue = "NaN";
         mainPage.selectCalculationOperator(CalculatorOperator.CalculatorOperatorType.MULTIPLY)
                 .clickCalculateResultButton();
-        assertThat(mainPage.getCalculationResult(), is(equalTo(expectedValue)));
-        assertThat(mainPage.getTableRowWidget().getResultByIndex(1).getText(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getCalculationResult(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getTableRowWidget().getResultByIndex(1).getText(),
+                is(equalTo(expectedValue)));
     }
 
     @Test(description = "Test division by zero")
@@ -64,8 +67,9 @@ public class NegativeTests {
         mainPage.insertFirstNumber("1").insertSecontNumber("0")
                 .selectCalculationOperator(CalculatorOperator.CalculatorOperatorType.DIVIDE)
                 .clickCalculateResultButton();
-        assertThat(mainPage.getCalculationResult(), is(equalTo(expectedValue)));
-        assertThat(mainPage.getTableRowWidget().getResultByIndex(1).getText(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getCalculationResult(), is(equalTo(expectedValue)));
+        assertThat(forWrong(expectedValue), mainPage.getTableRowWidget().getResultByIndex(1).getText(),
+                is(equalTo(expectedValue)));
     }
 
 }
